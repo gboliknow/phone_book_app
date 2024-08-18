@@ -107,6 +107,10 @@ class _AddEditContactViewState extends ConsumerState<AddEditContactView> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a phone number';
                   }
+                  final phoneRegExp = RegExp(r'^\+?\d{10,15}$');
+                  if (!phoneRegExp.hasMatch(value)) {
+                    return 'Please enter a valid phone number';
+                  }
                   return null;
                 },
               ),

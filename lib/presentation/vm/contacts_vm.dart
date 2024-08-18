@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:phone_book_app/models/contact_model.dart';
 
+
+// Provider for ContactViewModel, auto-disposed when not in use
 final contactViewModelProvider = ChangeNotifierProvider.autoDispose<ContactViewModel>((ref) {
   return ContactViewModel.init();
 });
@@ -34,6 +36,7 @@ class ContactViewModel extends ChangeNotifier {
     }
   }
 
+// Method to delete a contact based on ID
   void deleteContact(String id) {
     _contacts.removeWhere((contact) => contact.id == id);
     notifyListeners();
@@ -45,6 +48,8 @@ class ContactViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+
+// Method to get the filtered list of contacts based on the search query
   List<Contact> get allFilteredContacts {
     try {
       return contacts
@@ -56,4 +61,3 @@ class ContactViewModel extends ChangeNotifier {
     }
   }
 }
-

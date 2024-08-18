@@ -18,12 +18,10 @@ class MyApp extends StatelessWidget {
         useInheritedMediaQuery: true,
         designSize: const Size(414, 896),
         minTextAdapt: true,
-        builder: (context, child) {
-      
+        builder: (context, child) {     
           return ProviderScope(
             child: Consumer(builder: (context, ref, child) {
               final themeNotifier = ref.watch(themeNotifierProvider);
-
               return MaterialApp(
                 title: 'Flutter Demo',
                 theme: themeNotifier.currentTheme,
