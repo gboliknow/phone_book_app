@@ -51,7 +51,7 @@ class _ContactCardState extends State<ContactCard> {
               Text(
                 widget.contact.name,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Theme.of(context).textTheme.titleLarge?.color,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
                 ),
@@ -71,7 +71,7 @@ class _ContactCardState extends State<ContactCard> {
                   Text(
                     widget.contact.phone,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.titleLarge?.color,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
                     ),

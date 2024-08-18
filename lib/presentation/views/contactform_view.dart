@@ -78,7 +78,12 @@ class _AddEditContactViewState extends ConsumerState<AddEditContactView> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                  labelStyle: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a name';
@@ -89,7 +94,12 @@ class _AddEditContactViewState extends ConsumerState<AddEditContactView> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _phoneController,
-                decoration: const InputDecoration(labelText: 'Phone'),
+                decoration: InputDecoration(
+                  labelText: 'Phone',
+                  labelStyle: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -101,7 +111,12 @@ class _AddEditContactViewState extends ConsumerState<AddEditContactView> {
               const SizedBox(height: 16),
               TextFormField(
                   controller: _avatarController,
-                  decoration: const InputDecoration(labelText: 'Avatar URL'),
+                  decoration: InputDecoration(
+                    labelText: 'Avatar URL',
+                    labelStyle: TextStyle(
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter an avatar URL';

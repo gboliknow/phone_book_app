@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:phone_book_app/presentation/components/contact_card.dart';
 import 'package:phone_book_app/presentation/views/contactform_view.dart';
 import 'package:phone_book_app/presentation/vm/contacts_vm.dart';
+import 'package:phone_book_app/presentation/vm/theme_vm.dart';
 
 class ContactHomeView extends StatefulHookConsumerWidget {
   const ContactHomeView({super.key});
@@ -30,11 +31,20 @@ class _ContactHomeViewState extends ConsumerState<ContactHomeView> {
   @override
   Widget build(BuildContext context) {
     final contactVM = ref.watch(contactViewModelProvider);
+    final themeNotifier = ref.watch(themeNotifierProvider);
     final contacts = contactVM.allFilteredContacts;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Phone Book App"),
+        actions: [
+          Switch(
+            value: themeNotifier.isDarkMode,
+            onChanged: (value) {
+              ref.read(themeNotifierProvider.notifier).toggleTheme();
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -104,7 +114,7 @@ class ContactHeader extends StatelessWidget {
         Text(
           "Contacts",
           style: TextStyle(
-            color: Colors.black,
+            color: Theme.of(context).textTheme.titleLarge?.color,
             fontSize: 20.sp,
             fontWeight: FontWeight.w500,
           ),
@@ -124,6 +134,7 @@ class ContactHeader extends StatelessWidget {
                 Icon(
                   Icons.add,
                   size: 16.sp,
+                  color: Theme.of(context).iconTheme.color,
                 ),
                 SizedBox(
                   width: 12.w,
@@ -131,7 +142,7 @@ class ContactHeader extends StatelessWidget {
                 Text(
                   "Add Contact",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                   ),
