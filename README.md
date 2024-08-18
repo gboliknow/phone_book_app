@@ -44,7 +44,8 @@ bash
 Copy code
 flutter test
 Usage
-Adding a Contact
+Adding a Contact![Simulator Screenshot - iPhone 15 Pro Max - 2024-08-19 at 00 55 42](https://github.com/user-attachments/assets/763e00b1-ff55-4ba4-92e7-338de14796a8)
+
 Tap the floating action button (FAB) on the home screen or use the "Add Contact" button in the header.
 Enter the contact details in the form and press "Add Contact" to save.
 Editing a Contact
@@ -59,7 +60,8 @@ Toggling Themes
 To switch between light and dark themes, use the theme toggle button (if implemented) or update the theme in the app settings.
 Assumptions and Decisions
 
-Data Source: Contacts are initially loaded from a predefined JSON string for demo purposes. In a real-world scenario, this would be replaced with a backend service.
+Data Source: Contacts are initially loaded from a predefined JSON string for demo purposes. In a real-world scenario, this would be replaced with a backend servic![simulator_screenshot_85D72870-4C6F-40FB-AEE2-4C1B60E9CF5F](https://github.com/user-attachments/assets/f5b6628d-d5ad-4326-9095-046aa0a75aa3)
+e.
 State Management: The app uses the hooks_riverpod package for state management, providing a clean and reactive approach.
 Theming: The app supports both light and dark themes, with the ability to toggle between them.
 Responsive Design: The app uses the flutter_screenutil package to ensure proper scaling and responsiveness across different screen sizes.
