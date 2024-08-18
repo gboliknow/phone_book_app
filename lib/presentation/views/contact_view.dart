@@ -78,23 +78,25 @@ class _ContactHomeViewState extends ConsumerState<ContactHomeView> {
               },
             ),
             SizedBox(height: 24.h),
-            ListView.separated(
-              separatorBuilder: (context, index) {
-                return SizedBox(
-                  height: 15.h,
-                );
-              },
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: contacts.length,
-              itemBuilder: (context, index) {
-                final contact = contacts[index];
-                return ContactCard(
-                  contact: contact,
-                  contactVM: contactVM,
-                );
-              },
-            ),
+            contacts.isEmpty
+                ? Center(child: Text('No contacts found', style: Theme.of(context).textTheme.bodyLarge))
+                : ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: 15.h,
+                      );
+                    },
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: contacts.length,
+                    itemBuilder: (context, index) {
+                      final contact = contacts[index];
+                      return ContactCard(
+                        contact: contact,
+                        contactVM: contactVM,
+                      );
+                    },
+                  ),
           ],
         ),
       ),

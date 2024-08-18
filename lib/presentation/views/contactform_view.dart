@@ -51,8 +51,10 @@ class _AddEditContactViewState extends ConsumerState<AddEditContactView> {
       } else {
         contactVM.addContact(newContact);
       }
-
       Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(isEditMode ? 'Contact updated' : 'Contact added')),
+      );
     }
   }
 
