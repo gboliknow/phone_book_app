@@ -26,13 +26,6 @@ class ContactViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void searchContacts(String query) {
-    _contacts = _contacts
-        .where((contact) => contact.name.toLowerCase().contains(query.toLowerCase()) || contact.phone.contains(query))
-        .toList();
-    notifyListeners();
-  }
-
   void editContact(String id, Contact updatedContact) {
     int index = _contacts.indexWhere((contact) => contact.id == id);
     if (index != -1) {
@@ -44,6 +37,23 @@ class ContactViewModel extends ChangeNotifier {
   void deleteContact(String id) {
     _contacts.removeWhere((contact) => contact.id == id);
     notifyListeners();
+  }
+
+  String _searchQuery = "";
+  void searchContacts(String query) {
+    _searchQuery = query.toLowerCase();
+    notifyListeners();
+  }
+
+  List<Contact> get allFilteredContacts {
+    try {
+      return contacts
+          .where((item) =>
+              item.name.toLowerCase().contains(_searchQuery) || item.phone.toLowerCase().contains(_searchQuery))
+          .toList();
+    } catch (e) {
+      return [];
+    }
   }
 }
 

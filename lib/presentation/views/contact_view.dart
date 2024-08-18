@@ -30,7 +30,7 @@ class _ContactHomeViewState extends ConsumerState<ContactHomeView> {
   @override
   Widget build(BuildContext context) {
     final contactVM = ref.watch(contactViewModelProvider);
-    final contacts = contactVM.contacts;
+    final contacts = contactVM.allFilteredContacts;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -57,24 +57,14 @@ class _ContactHomeViewState extends ConsumerState<ContactHomeView> {
             SizedBox(height: 24.h),
             TextField(
               controller: _searchController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search Contacts',
-                border: const OutlineInputBorder(
+                border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(14.0)),
-                ),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    _searchController.clear();
-                    setState(() {});
-                  },
                 ),
               ),
               onChanged: (query) {
-                setState(() {
-                  // Update UI to show filtered contacts based on search
-                  contactVM.searchContacts(query);
-                });
+                contactVM.searchContacts(query);
               },
             ),
             SizedBox(height: 24.h),
