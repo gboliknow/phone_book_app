@@ -36,7 +36,7 @@ class _ContactCardState extends State<ContactCard> {
               color: Colors.grey.shade100,
               shape: BoxShape.circle,
             ),
-            child: widget.contact.avatar == ""
+            child: widget.contact.avatar == "" || !widget.contact.avatar.contains("https:")
                 ? Image.asset("profile_icon".png)
                 : CircleAvatar(
                     backgroundImage: NetworkImage(widget.contact.avatar),
