@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:phone_book_app/models/contact_model.dart';
+import 'package:phone_book_app/presentation/components/contact_card.dart';
 import 'package:phone_book_app/presentation/views/contactform_view.dart';
 import 'package:phone_book_app/presentation/vm/contacts_vm.dart';
-import 'package:phone_book_app/utils/logger.dart';
 
 class ContactHomeView extends StatefulHookConsumerWidget {
   const ContactHomeView({super.key});
@@ -92,105 +91,12 @@ class _ContactHomeViewState extends ConsumerState<ContactHomeView> {
                 final contact = contacts[index];
                 return ContactCard(
                   contact: contact,
+                  contactVM: contactVM,
                 );
               },
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ContactCard extends StatelessWidget {
-  const ContactCard({super.key, required this.contact});
-  final Contact contact;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => AddEditContactView(
-                      contact: contact,
-                    )));
-      },
-      child: Row(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            height: 40.h,
-            width: 40.w,
-            decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              shape: BoxShape.circle,
-            ),
-            child: contact.avatar == ""
-                ? Image.asset("profile_icon".png)
-                : CircleAvatar(
-                    backgroundImage: NetworkImage(contact.avatar),
-                  ),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                contact.name,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(
-                height: 6.h,
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.call,
-                    size: 12.sp,
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  Text(
-                    contact.phone,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(Icons.edit),
-            onPressed: () {
-              // Navigate to Edit Contact Screen
-            },
-          ),
-          Container(
-            height: 40,
-            padding: EdgeInsets.all(10.r),
-            decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(10.r)),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.delete,
-                  size: 16.sp,
-                ),
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

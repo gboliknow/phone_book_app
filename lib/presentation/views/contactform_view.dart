@@ -56,38 +56,6 @@ class _AddEditContactViewState extends ConsumerState<AddEditContactView> {
     }
   }
 
-  void _deleteContact() {
-    final contactVM = ref.read(contactViewModelProvider);
-
-    if (widget.contact != null) {
-      contactVM.deleteContact(widget.contact!.id);
-      Navigator.pop(context);
-    }
-  }
-
-  void _showDeleteConfirmationDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Delete Contact'),
-        content: const Text('Are you sure you want to delete this contact?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              _deleteContact();
-              Navigator.pop(ctx); // Close the dialog after deleting
-            },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
-
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -148,6 +116,38 @@ class _AddEditContactViewState extends ConsumerState<AddEditContactView> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _deleteContact() {
+    final contactVM = ref.read(contactViewModelProvider);
+
+    if (widget.contact != null) {
+      contactVM.deleteContact(widget.contact!.id);
+      Navigator.pop(context);
+    }
+  }
+
+  void _showDeleteConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Delete Contact'),
+        content: const Text('Are you sure you want to delete this contact?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              _deleteContact();
+              Navigator.pop(ctx); // Close the dialog after deleting
+            },
+            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+          ),
+        ],
       ),
     );
   }
