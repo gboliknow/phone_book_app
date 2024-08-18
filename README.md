@@ -20,7 +20,7 @@ To run the Phone Book App on your local machine, follow these steps:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/phone_book_app.git
+   git clone https://github.com/gboliknow/phone_book_app.git
    cd phone_book_app
 Install Dependencies
 
@@ -58,6 +58,7 @@ Use the search bar at the top of the contact list to filter contacts by name or 
 Toggling Themes
 To switch between light and dark themes, use the theme toggle button (if implemented) or update the theme in the app settings.
 Assumptions and Decisions
+
 Data Source: Contacts are initially loaded from a predefined JSON string for demo purposes. In a real-world scenario, this would be replaced with a backend service.
 State Management: The app uses the hooks_riverpod package for state management, providing a clean and reactive approach.
 Theming: The app supports both light and dark themes, with the ability to toggle between them.
